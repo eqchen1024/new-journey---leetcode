@@ -1,0 +1,25 @@
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        '''
+        #dfs
+        if root==None:
+            return 0
+        else:
+            return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+        '''
+        #bfs
+        queue=[root]
+        res=0
+        while queue:
+            tmp=[]
+            if root ==None:
+                return 0
+            else:
+                for i in queue:
+                    if i.left:
+                        tmp.append(i.left)
+                    if i.right:
+                        tmp.append(i.right)
+            res+=1
+            queue=tmp 
+        return res

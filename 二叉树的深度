@@ -20,7 +20,7 @@
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
         '''
-        #dfs 后续遍历 递归实现
+        #dfs 后序遍历 递归实现
         if root==None:
             return 0
         else:

@@ -32,7 +32,7 @@
 '''
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        '''
+        ''' 
         #二分查找
         n = len(nums)
         left = 0

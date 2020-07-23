@@ -34,3 +34,13 @@ class Solution:
                         dp[i][j]=min(dp[i-1][j],dp[i][j-1])+grid[i][j]
             return dp[-1][-1]#输出
         return minsum(dp,grid)
+
+
+        #通过滚动数组实现空间优化 不保存中间值
+        dp=[float("inf")]*(len(grid[0])+1)#这里建立长度为n+1的列表是因为方便第一列和第一行的值判断
+        #例如 dp[0]是正无穷则数组的第0列在min的作用下只能从上方取值加和，而第0行初始值为正无穷则在min的作用下从左边取值
+        dp[1]=0 #数组的[0][0]号元素 0与正无穷比较后取0再加上grid[0][0]
+        for row in grid:
+            for k,v in enumerate(row):
+                dp[k+1]=min(dp[k],dp[k+1])+v#比较左边的值s与上方的值（上方的值保存在dpp[k+1]位置未更新
+        return dp[-1]

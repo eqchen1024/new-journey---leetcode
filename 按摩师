@@ -40,3 +40,23 @@ class Solution:
             for i in range(3,len(nums)):
                 nums[i]=max(nums[i-2],nums[i-3])+nums[i]#状态转移方程
             return max(nums[-1],nums[-2])
+
+#滚动数组 空间优化
+class Solution:
+    def massage(self, nums: List[int]) -> int:
+        '''
+        dp0 在状态i时不接活 累积到现在的干活时长 0代表不接
+        dp1 在状态i时接活 累积到现在的干活时长 1代表接活
+        如果i时不接活那i-1的z状态可以是接活或者不接活 去i-1时刻 dp0 dp1中大的
+        而i接活 那么i-1就不能接活 只能i-1 不接活加上i的时长
+        '''
+        n=len(nums)
+        if n==0:
+            return 0
+        else:
+            dp0,dp1=0,nums[0]
+            for i in range(1,n):
+                tdp0=max(dp0,dp1)
+                tdp1=dp0+nums[i]
+                dp0,dp1=tdp0,tdp1
+            return max(dp0,dp1)

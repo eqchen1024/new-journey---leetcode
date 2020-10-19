@@ -1,0 +1,33 @@
+难度中等429收藏分享切换为英文接收动态反馈给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。
+
+示例 1:
+
+输入: 2
+输出: [0,1,1]
+
+示例 2:
+
+输入: 5
+输出: [0,1,1,2,1,2]
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/counting-bits
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+import math
+class Solution(object):
+    def countBits(self, num):
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+        if num==0:
+            return [0]
+        else:
+            res=[0]*(num+1)
+            res[1]=1
+            for i in range(2,num+1):
+                res[i]=res[i-2**int(math.log(i,2))]+1
+            return res
+'''
+想清楚从哪个元素转移过来的， 比如15（1111）是从7（111）转移过来的 1111》111》11》1 每次跳的格数是小于那个数最大的2的次方 例如7》15 跳的是2的三次方 用log得到
+'''
